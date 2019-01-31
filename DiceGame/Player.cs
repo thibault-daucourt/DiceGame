@@ -12,7 +12,6 @@ namespace Dice_for_playing
     {
         private string pseudo;
         private int score;
-        private int points;
 
         private const int Min_Score = 0;
         private const int Max_Score = 5;
@@ -22,7 +21,6 @@ namespace Dice_for_playing
         {
             this.Pseudo = pseudo;
             this.Score = 0;
-            this.points = 0;
         }
 
         public string Pseudo
@@ -51,25 +49,11 @@ namespace Dice_for_playing
                 score = value;
             }
         }
-
-        public int Points
-        {
-            get
-            {
-                return points;
-            }
-
-            set
-            {
-                if (value > Max_Score || value < Min_Score)
-                    points = value;
-            }
-        }
         /// <summary>
         /// Le joueur décide s'il 
         /// </summary>
         /// <param name="Opponent"></param>
         /// <returns></returns>
-        public abstract bool RollDice(Player Opponent);
+        public abstract bool RollDice(int opponentSocre);
     }
 }
