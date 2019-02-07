@@ -17,7 +17,7 @@ namespace DiceGame
         public override bool RollDice(int points, int opponentScore)
         {
             Console.WriteLine("le nombre de point actuel est de {0} et votre adversaire à un score de {1}", points, opponentScore);
-            Console.WriteLine("Voulez-vous relancer les dés ?(y/n) : ");
+            Console.Write("Voulez-vous relancer les dés ?(y/n) : ");
 
             string read = Console.ReadLine();
 

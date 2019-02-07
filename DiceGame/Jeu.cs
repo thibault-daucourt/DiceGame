@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiceGame;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -22,8 +23,8 @@ namespace Dice_for_playing
         public void startAGame()
         {
             // create players and dices
-            playerHuman = null;
-            playerRobot = null;
+            playerHuman = new HumanPlayer("Sagarion");
+            playerRobot = new RobotPlayer("Robi");
 
             dice1 = new Dice(6);
             dice2 = new Dice(6);
@@ -35,7 +36,7 @@ namespace Dice_for_playing
 
             Console.WriteLine("Bienvenu au jeu de dé !");
             Console.WriteLine("Une nouvelle partie commence !");
-            Console.WriteLine("----\n\n");
+            Console.WriteLine("----\n");
 
             // Détermine qui joue en premier
             order = new Queue<Player>();
@@ -66,12 +67,17 @@ namespace Dice_for_playing
                 // joue le rounds
                 Round(player1, player2);
 
+                // affichage des score après ce Round
+                Console.WriteLine("Score actuel du joueur {0} : {1}", playerHuman.Pseudo, playerHuman.Score);
+                Console.WriteLine("Score actuel du joueur {0} : {1}", playerRobot.Pseudo, playerRobot.Score);
+                Console.WriteLine("---\n");
+
                 // replace dans la queue en intervertissant l'ordre
                 order.Enqueue(player2);
                 order.Enqueue(player1);
 
 
-            } while (playerHuman.Score < 5 || playerRobot.Score < 5);
+            } while (playerHuman.Score < 5 && playerRobot.Score < 5);
 
             Console.WriteLine("\nLa partie s'est terminée et nous avons un vainqueur !");
             if(playerHuman.Score >= 5)
@@ -80,7 +86,7 @@ namespace Dice_for_playing
                 Console.WriteLine("Le joueur robotique {0} à gagné sur un Score de {1} !!", playerRobot.Pseudo, playerRobot.Score);
         }
 
-        public void Round(Player player1, Player player2)
+        private void Round(Player player1, Player player2)
         {
             int points = 0;
 
@@ -134,7 +140,7 @@ namespace Dice_for_playing
                     }
                 }
 
-            } while (!player1Surender || !player2Surender || points < 21);
+            } while (!player1Surender && !player2Surender && points < 21);
 
             Console.WriteLine("Round terminé");
 
@@ -143,13 +149,13 @@ namespace Dice_for_playing
             // si abandon 
             if (player1Surender)
             {
-                player2.Score += 2;
-                Console.WriteLine("Le joueur {0} gagne 2 points suite à l'abandon de {1}", player2.Pseudo, player1.Pseudo);
+                player2.Score += 1;
+                Console.WriteLine("Le joueur {0} gagne 1 point suite à l'abandon de {1}", player2.Pseudo, player1.Pseudo);
             }
             else if (player2Surender)
             {
-                player1.Score += 2;
-                Console.WriteLine("Le joueur {0} gagne 2 points suite à l'abandon de {1}", player1.Pseudo, player2.Pseudo);
+                player1.Score += 1;
+                Console.WriteLine("Le joueur {0} gagne 1 point suite à l'abandon de {1}", player1.Pseudo, player2.Pseudo);
             }
             // si total de points dépassé
             else
@@ -157,20 +163,19 @@ namespace Dice_for_playing
                 // selon le tour, rétribue le joueur qui n'a pas joué en dernier
                 if (turn % 2 == 1)
                 {
-                    player2.Score += 1;
+                    player2.Score += 2;
                     Console.WriteLine("Le joueur {0} à dépassé 21", player1.Pseudo);
-                    Console.WriteLine("Le joueur {0} gagne 1 point", player2.Pseudo);
+                    Console.WriteLine("Le joueur {0} gagne 2 points", player2.Pseudo);
                 }
                 else
                 { 
-                    player1.Score += 1;
+                    player1.Score += 2;
                     Console.WriteLine("Le joueur {0} à dépassé 21", player2.Pseudo);
-                    Console.WriteLine("Le joueur {0} gagne 1 point", player1.Pseudo);
+                    Console.WriteLine("Le joueur {0} gagne 2 points", player1.Pseudo);
                 }
             }
 
-            Console.WriteLine("Ce round est terminé !");
-            Console.WriteLine("--- \n");
+            Console.WriteLine("Ce round est terminé !\n");
 
         }
     }

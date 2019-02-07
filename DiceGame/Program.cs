@@ -22,7 +22,8 @@ namespace Dice_for_playing
         static void Main(string[] args)
         {
 
-            Application.GetAPair();
+            Jeu monJeu = new Jeu();
+            monJeu.startAGame();
 
         }
     }
