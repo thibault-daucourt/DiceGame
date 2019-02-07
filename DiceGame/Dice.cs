@@ -53,6 +53,15 @@ namespace Dice_for_playing
             }
         }
 
+        // Mise en place de la propriété 'NumberSides'
+        public int NumberSides
+        {
+            get
+            {
+                return numberSides;
+            }
+        }
+
         /// <summary>
         /// fait un jet de dé qui va attribué une valeur aléatoire entre 1 et le nombre de face compris
         /// </summary>
