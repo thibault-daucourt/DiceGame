@@ -14,13 +14,12 @@ namespace Dice_for_playing
         private int score;
 
         private const int Min_Score = 0;
-        private const int Max_Score = 5;
         
 
         public Player (string pseudo)
         {
             this.Pseudo = pseudo;
-            this.Score = 0;
+            this.Score = Min_Score;
         }
 
         public string Pseudo
@@ -54,6 +53,11 @@ namespace Dice_for_playing
         /// </summary>
         /// <param name="Opponent"></param>
         /// <returns></returns>
-        public abstract bool RollDice(int points,int opponentSocre);
+        public abstract bool RollDice(int points,int opponentScore);
+
+        public void Reset()
+        {
+            Score = Min_Score;
+        }
     }
 }
