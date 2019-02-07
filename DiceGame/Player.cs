@@ -54,6 +54,6 @@ namespace Dice_for_playing
         /// </summary>
         /// <param name="Opponent"></param>
         /// <returns></returns>
-        public abstract bool RollDice(int opponentSocre);
+        public abstract bool RollDice(int points,int opponentSocre);
     }
 }
