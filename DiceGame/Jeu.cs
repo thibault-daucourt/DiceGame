@@ -20,16 +20,12 @@ namespace Dice_for_playing
 
         private Queue<Player> order;
 
-        /// <summary>
-        /// Partie gérant le lancement d'une partie
-        /// </summary>
         public void startAGame()
         {
-            // créer les joueurs
+            // create players and dices
             playerHuman = new HumanPlayer("Sagarion");
-            playerRobot = new RobotPlayer("Robi", dice1, dice2);
+            playerRobot = new RobotPlayer("Robi");
 
-            //créer les dés
             dice1 = new Dice(6);
             dice2 = new Dice(6);
 
@@ -90,11 +86,6 @@ namespace Dice_for_playing
                 Console.WriteLine("Le joueur robotique {0} à gagné sur un Score de {1} !!", playerRobot.Pseudo, playerRobot.Score);
         }
 
-        /// <summary>
-        /// Partie gérant le déroulement d'une manche de jeu
-        /// </summary>
-        /// <param name="player1"></param>
-        /// <param name="player2"></param>
         private void Round(Player player1, Player player2)
         {
             int points = 0;
@@ -126,7 +117,6 @@ namespace Dice_for_playing
                     {
                         player1Surender = true;
                         Console.WriteLine("Joueur {0} abandonne ...", player1.Pseudo);
-
                     }
                 }
                 //joueur 2

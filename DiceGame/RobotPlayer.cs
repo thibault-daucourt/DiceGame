@@ -8,11 +8,8 @@ namespace Dice_for_playing
 {
     class RobotPlayer : Player
     {
-        private int limite;
-
-        public RobotPlayer(string pseudo,Dice dice1, Dice dice2) : base(pseudo)
+        public RobotPlayer(string pseudo) : base(pseudo)
         {
-            limite = (int)((dice1.NumberSides + 1 + dice2.NumberSides + 1) / 2);
         }
 
         public override bool RollDice(int points, int opponentScore)
@@ -21,14 +18,12 @@ namespace Dice_for_playing
 
             // si le joueur adverse ne gagne pas sur un abandon
             // et que le nombre de points actuel est suzpérieur à 21 moins le jet de dés moyen
-            if (opponentScore < 4 && points > 21-limite)
+            if (opponentScore < 4 && points > 21-7)
             {
                 roll = false;
             }
 
             return roll;
         }
-
-        
     }
 }
